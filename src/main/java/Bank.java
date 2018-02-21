@@ -48,8 +48,15 @@ public class Bank {
      * @return boolean
      */
     public boolean depositMoney(final BankAccount bankAccount, final double amount) {
-        bankAccount.setAccountBalance(bankAccount.getAccountBalance() + amount);
-        return true;
+        boolean a;
+        if (amount >= 0) {
+            bankAccount.setAccountBalance(bankAccount.getAccountBalance() + amount);
+            a = true;
+        }
+        else {
+            a = false;
+        }
+        return a;
     }
 
     /**
@@ -66,9 +73,16 @@ public class Bank {
 
     public boolean transferMoney(final BankAccount source, final BankAccount destination,
             final double amount) {
-        source.setAccountBalance(source.getAccountBalance() - amount);
-        destination.setAccountBalance(destination.getAccountBalance() + amount);
-        return true;
+        boolean a;
+        if (source.getAccountBalance() >= amount && amount >= 0) {
+            source.setAccountBalance(source.getAccountBalance() - amount);
+            destination.setAccountBalance(destination.getAccountBalance() + amount);
+            a = true;
+        }
+        else {
+            a = false;
+        }
+        return a;
     }
 
     /**
